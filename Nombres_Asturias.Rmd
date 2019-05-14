@@ -1,0 +1,40 @@
+---
+title: "Nombres_Asturias"
+author: "Sergio Berdiales"
+date: "5/13/2019"
+output: html_document
+---
+
+Cargamos los paquetes necesarios
+
+```{r , warning= FALSE, message= FALSE}
+library(tidyverse)
+library(gridExtra)
+```
+
+
+```{r , warning= FALSE, message= FALSE}
+
+original_dataset <- read_csv('data/nombres_asturias_2006-2016.csv')
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+nombres_asturias_v0 <- original_dataset %>% 
+                            mutate(num_letras = nchar(nombre))
+                        
+
+```
+
+
+```{r , warning= FALSE, message= FALSE}
+
+evolucion_num_letras <- nombres_asturias_v0 %>% group_by(num_letras, `año`) %>%
+                                  summarise(sum(n))
+                                  
+
+```
+
+
+
